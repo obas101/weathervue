@@ -19,9 +19,9 @@
 							</span>
 						</div>
 					</div>
-					<div class="small-spacing"></div>
+					<div class="large-spacing"></div>
 					<div class="font-styling">
-						<span class="temperature">50degreeC</span>
+						<span class="temperature">50&#176;C</span>
 					</div>
 					<div class="large-spacing"></div>
 					<div class="condition font-styling "><span>Clear</span></div>
@@ -60,23 +60,23 @@ input {
 	padding-left: 2rem;
 }
 main {
-	padding-top: 4rem;
-	padding-left: 9rem;
+	/* padding-top: 3rem; */
+	padding-left: 8rem;
+	padding-right: 8rem;
 	background-image: linear-gradient(
 		to bottom,
 		rgba(0, 0, 0, 0.75),
 		rgba(0, 0, 0, 0.75)
 	);
 	/* background-image: linear-gradient(to bottom, grey 0.75, black 0.25); */
-	padding-right: 9rem;
-	min-height: 100vh;
+	min-height: 100vh !important;
 }
 .large-spacing {
-	margin-top: 3rem;
+	margin-top: 2.5rem;
 	width: 100%;
 }
 .small-spacing {
-	margin-top: 1.5rem;
+	margin-top: 1rem;
 	width: 100%;
 }
 .font-styling {
@@ -94,12 +94,15 @@ main {
 	letter-spacing: 3px;
 }
 .temperature {
-	font-size: 6.5rem;
+	font-size: 5.5rem;
 	font-weight: 600;
 	background: rgb(255, 255, 255, 0.2);
 	padding: 1rem;
 	border-radius: 15px;
 	box-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+}
+input{
+  margin-top: 4rem;
 }
 .condition {
 	font-size: 3rem;
