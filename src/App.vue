@@ -49,15 +49,26 @@ export default {
 	background-size: cover;
 }
 .input-container {
-	width: 100%;
+	width: 100% !important;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 input {
-	width: 100%;
+	/* position: absolute; */
+	/* left: 50%; */
+	width: 30rem;
 	padding: 1rem;
+	background: rgb(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  box-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
 	outline: none;
 	border-radius: 30px;
 	font-size: 1.3rem;
 	padding-left: 2rem;
+	margin-top: 4rem;
 }
 main {
 	/* padding-top: 3rem; */
@@ -72,11 +83,11 @@ main {
 	min-height: 100vh !important;
 }
 .large-spacing {
-	margin-top: 2.5rem;
+	margin-top: 3rem;
 	width: 100%;
 }
 .small-spacing {
-	margin-top: 1rem;
+	margin-top: 2rem;
 	width: 100%;
 }
 .font-styling {
@@ -94,15 +105,12 @@ main {
 	letter-spacing: 3px;
 }
 .temperature {
-	font-size: 5.5rem;
-	font-weight: 600;
+	font-size: 6rem;
+	font-weight: 700;
 	background: rgb(255, 255, 255, 0.2);
-	padding: 1rem;
+	padding: 1.5rem;
 	border-radius: 15px;
 	box-shadow: 3px 6px rgba(0, 0, 0, 0.25);
-}
-input{
-  margin-top: 4rem;
 }
 .condition {
 	font-size: 3rem;
