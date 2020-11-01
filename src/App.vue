@@ -1,5 +1,12 @@
 <template>
-	<div id="app">
+	<div
+		id="app"
+		:class="
+			typeof weather.main != 'undefined' && weather.main.temp > 25
+				? 'warm'
+				: ''
+		"
+	>
 		<main>
 			<div class="body-wrapper">
 				<div class="input-container">
@@ -114,6 +121,22 @@ export default {
 	height: 100vh;
 	background-size: cover;
 }
+#app.warm {
+	background-image: url(./assets/warm.jpg);
+	height: 100vh;
+	background-size: cover;
+}
+/* #app.cold {
+	background-image: url(./assets/cold.jpg);
+	height: 100vh;
+	background-size: cover;
+} */
+#app.normal {
+	background-image: url(./assets/normal.jpg);
+	height: 100vh;
+	background-size: cover;
+}
+
 .input-container {
 	width: 100% !important;
 	display: flex;
@@ -137,8 +160,8 @@ input {
 }
 main {
 	/* padding-top: 3rem; */
-	padding-left: 8rem;
-	padding-right: 8rem;
+	padding-left: 2rem;
+	padding-right: 2rem;
 	background-image: linear-gradient(
 		to bottom,
 		rgba(0, 0, 0, 0.75),
