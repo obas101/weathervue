@@ -3,28 +3,37 @@
 		<main>
 			<div class="body-wrapper">
 				<div class="input-container">
-					<input type="text" placeholder="Enter Location or City..." />
+					<input
+						v-model="query"
+						@keypress="fetchWeather"
+						type="text"
+						placeholder="Enter Location or City..."
+					/>
 				</div>
 				<div class="large-spacing"></div>
-				<div class="main-display">
+				<div class="main-display" v-if="typeof weather.main != 'undefined'">
 					<div class="font-styling">
 						<span class="city">
-							Nigeria
+							{{ weather.name }}, {{ weather.sys.country }}
 							<br />
 						</span>
 
 						<div class="font-styling">
 							<span class="date">
-								24th May 2020
+								{{ dateBuilder() }}
 							</span>
 						</div>
 					</div>
 					<div class="large-spacing"></div>
 					<div class="font-styling">
-						<span class="temperature">50&#176;C</span>
+						<span class="temperature"
+							>{{ Math.round(weather.main.temp) }}&#176;C</span
+						>
 					</div>
 					<div class="large-spacing"></div>
-					<div class="condition font-styling "><span>Clear</span></div>
+					<div class="condition font-styling ">
+						<span>{{ weather.weather[0].description }}</span>
+					</div>
 				</div>
 			</div>
 		</main>
@@ -34,6 +43,63 @@
 <script>
 export default {
 	name: "App",
+	data() {
+		return {
+			api_key: "8b8661c3d59f8d9630996046a22b4eea",
+			base_url: "http://api.openweathermap.org/data/2.5/",
+			query: "",
+			weather: {},
+		};
+	},
+	methods: {
+		fetchWeather(e) {
+			if (e.key == "Enter") {
+				fetch(
+					`${this.base_url}weather?q=${this.query}&units=metric&APPID=${this.api_key}`
+				)
+					.then((res) => {
+						return res.json();
+					})
+					.then(this.setResults);
+			}
+		},
+		setResults(results) {
+			this.weather = results;
+		},
+		dateBuilder() {
+			let d = new Date();
+			let months = [
+				"January",
+				"February",
+				"March",
+				"April",
+				"May",
+				"June",
+				"July",
+				"August",
+				"September",
+				"October",
+				"November",
+				"December",
+			];
+			let days = [
+				"Sunday",
+				"Monday",
+				"Tuesday",
+				"Wednesday",
+				"Thursday",
+				"Friday",
+				"Saturday",
+			];
+
+			let day = days[d.getDay()];
+			let date = d.getDate();
+			let month = months[d.getMonth()];
+			let year = d.getFullYear();
+
+			return `${day} ${date}, ${month} ${year}`;
+		},
+	},
 };
 </script>
 
@@ -57,18 +123,17 @@ export default {
 input {
 	/* position: absolute; */
 	/* left: 50%; */
-	width: 30rem;
+	width: 25rem;
 	padding: 1rem;
 	background: rgb(255, 255, 255, 0.2);
-  border: none;
-  color: white;
-  box-shadow: 3px 6px rgba(0, 0, 0, 0.25);
-text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+	border: none;
+	color: white;
+	box-shadow: 3px 6px rgba(0, 0, 0, 0.25);
 	outline: none;
 	border-radius: 30px;
 	font-size: 1.3rem;
 	padding-left: 2rem;
-	margin-top: 4rem;
+	margin-top: 3.5rem;
 }
 main {
 	/* padding-top: 3rem; */
@@ -100,12 +165,14 @@ main {
 	color: gray;
 }
 .city {
-	font-size: 3rem;
+	/* margin-top: 1rem; */
+	font-size: 2.5rem;
 	font-weight: 400;
 	letter-spacing: 3px;
 }
 .temperature {
-	font-size: 6rem;
+	/* margin-top: 1rem; */
+	font-size: 5.5rem;
 	font-weight: 700;
 	background: rgb(255, 255, 255, 0.2);
 	padding: 1.5rem;
@@ -113,7 +180,8 @@ main {
 	box-shadow: 3px 6px rgba(0, 0, 0, 0.25);
 }
 .condition {
-	font-size: 3rem;
+	/* margin-top: 1rem; */
+	font-size: 2.5rem;
 	font-weight: 600;
 	text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
 }
